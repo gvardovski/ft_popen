@@ -6,12 +6,13 @@
 /*   By: svolkau <gvardovski@icloud.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 12:09:45 by svolkau           #+#    #+#             */
-/*   Updated: 2025/09/25 14:23:50 by svolkau          ###   ########.fr       */
+/*   Updated: 2025/09/25 14:52:48 by svolkau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdio.h>
+#include <sys/wait.h>
 
 int ft_popen(char *file, char *gv[], char type)
 {
@@ -43,11 +44,13 @@ int ft_popen(char *file, char *gv[], char type)
 	if (type == 'r')
 	{
 		close(fd[1]);
+		wait(NULL);
 		return(fd[0]);
 	}
 	else
 	{
 		close(fd[0]);
+		wait(NULL);
 		return(fd[1]);
 	}
 }
